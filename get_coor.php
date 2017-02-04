@@ -1,4 +1,5 @@
 <?php
+//saves coordinates sent to POST from phone app
 function get_coordinates($dbc){
   $longitude = $_POST['lng'];
   $latitude = $_POST['lat'];
