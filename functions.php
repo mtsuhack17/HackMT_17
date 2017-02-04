@@ -40,11 +40,10 @@ function get_users(){
   }
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
   $r = mysqli_query($db, $q);
-  while($user = mysqli_fetch_assoc($r)){
-    echo "User id: ".$user['ID'];
-    echo "Longitude: ".$user['NAME'];
-  }
+
+  return $r
 }
+
 //get_orders_by_users
 function get_orders_by_users($user){
   if(!$db)
@@ -62,5 +61,17 @@ function get_orders_by_users($user){
     echo "ID: ".$orders['ID'];
     echo "Time: ".$orders['TIMES'];
   }
+}
+
+if(isset($_GET['all_users'])) 
+{
+  header("Content-type: text/txt; charset=UTF-8");
+  include_once "./get_db_info.php";
+  $ret = get_users();
+  while($user = mysqli_fetch_assoc($ret)){
+    echo "User id: ".$user['ID'];
+    echo "Longitude: ".$user['NAME'];
+  }
+
 }
  ?>
