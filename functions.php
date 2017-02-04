@@ -46,7 +46,7 @@ function get_users($db = false)
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
   $r = mysqli_query($db, $q);
 
-  return $r
+  return $r;
 }
 
 //get_orders_by_users
