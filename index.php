@@ -6,6 +6,7 @@
 <body>
 
 <?php
+echo "before include";
 include('./connection.php');
 include('./functions.php');
 echo "before function call";
