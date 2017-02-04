@@ -1,4 +1,5 @@
-<?php 
+<?php
+echo " in connection.php ";
 //database connection
 $servername = "ancient.cs.mtsu.edu";
 $username = "hackmt7";
