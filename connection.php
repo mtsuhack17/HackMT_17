@@ -1,5 +1,5 @@
 <?php
-funciton get_db_connection($db = false)
+function get_db_connection($db = false)
 {
 	$servername = "ancient.cs.mtsu.edu";
 	$username = "hackmt7";
