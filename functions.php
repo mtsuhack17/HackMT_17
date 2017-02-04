@@ -72,8 +72,8 @@ function get_orders_by_users($user, $db = false){
 if(isset($_GET['all_users']))
 {
   header("Content-type: text/txt; charset=UTF-8");
-  echo 'before get_users call';
   $ret = get_users();
+  echo 'after get_users call';
 
   while($user = mysqli_fetch_assoc($ret)){
     echo "User id: ".$user['ID'];
