@@ -43,7 +43,8 @@ function get_orders_by_users($user, $db = false){
       $db = get_db_connection();
   }
   $q = "SELECT * FROM ORDERS WHERE ASSIGNED = '$user'";
-  return 
+  $r = mysqli_query($db, $q);
+  return $r;
 }
 
 if(isset($_GET['all_users']))
