@@ -1,5 +1,4 @@
 <?php
-echo " in functions.php ";
 
 function get_position_by_user($user, $db = false){
   if(!$db)
@@ -17,7 +16,6 @@ function get_position_by_user($user, $db = false){
 }
 //get_orders
 function get_orders($db = false){
-  echo "in function call";
   if(!$db)
   {
       $db = get_db_connection();
