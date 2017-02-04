@@ -43,7 +43,7 @@ function get_users($db = false)
   }
   // echo "before query \n";
 
-  $q = "SELECT * FROM USERS ";
+  $q = "SELECT * FROM USERS ;";
   $r = mysqli_query($db, $q);
   // echo "before new connection \n";
 
