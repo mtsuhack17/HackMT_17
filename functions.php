@@ -1,5 +1,7 @@
 <?php
-function get_position_by_user($user){
+
+include_once "./conneciton.php";
+function get_position_by_user($user, $db = false){
   if(!$db)
   {
       $db = get_db_connection();
@@ -14,7 +16,7 @@ function get_position_by_user($user){
   }
 }
 //get_orders
-function get_orders(){
+function get_orders($db = false){
   if(!$db)
   {
       $db = get_db_connection();
@@ -33,7 +35,8 @@ function get_orders(){
 }
 
 //users
-function get_users(){
+function get_users($db = false)
+{
   if(!$db)
   {
       $db = get_db_connection();
@@ -45,7 +48,7 @@ function get_users(){
 }
 
 //get_orders_by_users
-function get_orders_by_users($user){
+function get_orders_by_users($user, $db = false){
   if(!$db)
   {
       $db = get_db_connection();
@@ -66,12 +69,11 @@ function get_orders_by_users($user){
 if(isset($_GET['all_users'])) 
 {
   header("Content-type: text/txt; charset=UTF-8");
-  include_once "./get_db_info.php";
+  // include_once "./get_db_info.php";
   $ret = get_users();
   while($user = mysqli_fetch_assoc($ret)){
     echo "User id: ".$user['ID'];
     echo "Longitude: ".$user['NAME'];
   }
-
 }
  ?>
