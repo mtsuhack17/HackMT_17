@@ -5,7 +5,7 @@ function get_db_connection($db = false)
 	$username = "hackmt7";
 	$password = "hackmt7mysql";
 	$tdb = "hackmt7";
-	echo 'before msql()';
+	// echo 'before msql()';
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $tdb);
 

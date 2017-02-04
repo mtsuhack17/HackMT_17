@@ -38,12 +38,12 @@ function get_orders($db = false){
 //users
 function get_users($db = false)
 {
-      echo 'before connection';
+      // echo 'before connection';
   if(!$db)
   {   
       $db = get_db_connection();
   }
-  echo "before query \n";
+  // echo "before query \n";
 
   $q = "SELECT * FROM USERS ;";
   $r = mysqli_query($db, $q);
@@ -73,12 +73,12 @@ function get_orders_by_users($user, $db = false){
 
 if(isset($_GET['all_users']))
 {
-  // header("Content-type: text/txt; charset=UTF-8");
+  header("Content-type: text/txt; charset=UTF-8");
   $ret = get_users();
   var_dump($ret);
-  // while($user = mysqli_fetch_assoc($ret)){
-  //   echo "User id: ".$user['ID'];
-  //   echo "Longitude: ".$user['NAME'];
-  // }
+  while($user = mysqli_fetch_assoc($ret)){
+    echo "User id: ".$user['ID'];
+    echo "Longitude: ".$user['NAME'];
+  }
 }
  ?>
