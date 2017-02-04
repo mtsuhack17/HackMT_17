@@ -8,12 +8,7 @@ function get_position_by_user($user, $db = false){
   }
   $q = "SELECT * FROM POSITION WHERE USER_ID = '$user'";
   $r = mysqli_query($db, $q);
-  while($position = mysqli_fetch_assoc($r)){
-    echo "User id: ".$position['USER_ID'];
-    echo "Longitude: ".$position['COORD_LON'];
-    echo "Latitude: ".$position['COORD_LAT'];
-    echo "Time: ".$position['TIMES'];
-  }
+  return $r;
 }
 //get_orders
 function get_orders($db = false){
@@ -22,17 +17,11 @@ function get_orders($db = false){
 
       $db = get_db_connection();
   }
-  $q = "SELECT * FROM ORDERS";
+  $q = "SELECT * FROM ORDERS;";
+
   $r = mysqli_query($db, $q);
-  while($orders = mysqli_fetch_assoc($r)){
-    echo "Address: ".$orders['ADDRESS'];
-    echo "User: ".$orders['ASSIGNED'];
-    echo "Longitude: ".$orders['COORD_LON'];
-    echo "Latitude: ".$orders['COORD_LAT'];
-    echo "Direction: ".$orders['DIRECTION'];
-    echo "ID: ".$orders['ID'];
-    echo "Time: ".$orders['TIMES'];
-  }
+  return $r;
+
 }
 
 //users
@@ -73,7 +62,7 @@ if(isset($_GET['get_orders_by_user']))
   $user = $_GET['get_orders_by_user'];
   {
     $ret = get_orders_by_users($user);
-    while($orders = mysqli_fetch_assoc($r))
+    while($orders = mysqli_fetch_assoc($ret))
     {
       echo "Address: ".$orders['ADDRESS'];
       echo "User: ".$orders['ASSIGNED'];
@@ -87,6 +76,34 @@ if(isset($_GET['get_orders_by_user']))
 }
 
 
+if(isset($_GET['get_all_orders']))
+{
+  header("Content-type: text/txt; charset=UTF-8");
+  $ret = get_orders();
+  while($orders = mysqli_fetch_assoc($ret)){
+    echo "Address: ".$orders['ADDRESS'];
+    echo "User: ".$orders['ASSIGNED'];
+    echo "Longitude: ".$orders['COORD_LON'];
+    echo "Latitude: ".$orders['COORD_LAT'];
+    echo "Direction: ".$orders['DIRECTION'];
+    echo "ID: ".$orders['ID'];
+    echo "Time: ".$orders['TIMES'];
+  }
+}
 
-
+if(isset($_GET['get_position_by_user']))
+{
+  header("Content-type: text/txt; charset=UTF-8");
+  $user = $_GET['get_position_by_user'];
+  {
+    $ret = get_position_by_user($user);
+while($position = mysqli_fetch_assoc($ret))
+{
+    echo "User id: ".$position['USER_ID'];
+    echo "Longitude: ".$position['COORD_LON'];
+    echo "Latitude: ".$position['COORD_LAT'];
+    echo "Time: ".$position['TIMES'];
+  }
+}
+}
  ?>
