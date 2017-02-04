@@ -6,16 +6,53 @@
 </head>
 <body>
 <div id="result">Server's response</div><br /><br />
-<div onclick="SendGet();">Send get to ajax.php</div><br />
+<div onclick="get_all_users();">Get all users</div><br />
+<div onclick="get_all_orders();">Get all orders</div><br />
+<div onclick="get_orders_by_user();">Get orders by users</div><br />
+<div onclick="get_positions_by_user();">Get position by users</div><br />
 
 <script type="text/javascript" src="./scriptjava.js"></script>
 
 <script type="text/javascript">
-    function SendGet() {
+    function get_all_users() {
         $$a({
             type:'get',
             url:'ajax.php',
-            data:{'q_type':'get_all_coord'},
+            data:{'all_users':'true'},
+            response:'text',
+            success:function (data) {
+                $$('result',$$('result').innerHTML + '<br />'+data);
+            }
+        });
+    }
+    function get_all_orders() {
+        $$a({
+            type:'get',
+            url:'ajax.php',
+            data:{'get_all_orders':'get_all_orders'},
+            response:'text',
+            success:function (data) {
+                $$('result',$$('result').innerHTML + '<br />'+data);
+            }
+        });
+    }
+    function get_orders_by_user() {
+        $$a({
+            type:'get',
+            url:'ajax.php',
+            data:{'get_orders_by_user':'get_orders_by_user'},
+            response:'text',
+            success:function (data) {
+                $$('result',$$('result').innerHTML + '<br />'+data);
+            }
+        });
+    }
+
+    function get_positions_by_user() {
+        $$a({
+            type:'get',
+            url:'ajax.php',
+            data:{'get_position_by_user':'get_position_by_user'},
             response:'text',
             success:function (data) {
                 $$('result',$$('result').innerHTML + '<br />'+data);
