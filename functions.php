@@ -74,12 +74,12 @@ if(isset($_GET['all_users']))
   // header("Content-type: text/txt; charset=UTF-8");
   // include_once "./get_db_info.php";
   echo "before call";
-  $ret = get_users();
-  echo "after call";
+  // $ret = get_users();
+  // echo "after call";
 
-  while($user = mysqli_fetch_assoc($ret)){
-    echo "User id: ".$user['ID'];
-    echo "Longitude: ".$user['NAME'];
-  }
+  // while($user = mysqli_fetch_assoc($ret)){
+  //   echo "User id: ".$user['ID'];
+  //   echo "Longitude: ".$user['NAME'];
+  // }
 }
  ?>
