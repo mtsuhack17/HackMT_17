@@ -1,6 +1,5 @@
 <?php
 
-include_once "./conneciton.php";
 function get_position_by_user($user, $db = false){
   if(!$db)
   {
@@ -39,6 +38,7 @@ function get_users($db = false)
 {
   if(!$db)
   {
+      include_once "./conneciton.php";
       $db = get_db_connection();
   }
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
