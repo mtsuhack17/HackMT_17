@@ -39,15 +39,15 @@ function get_users($db = false)
   echo "before new connection \n";
   if(!$db)
   {
-      include_once "./conneciton.php";
+  //     // include_once "./conneciton.php";
       $db = get_db_connection($db);
   }
-  echo "before query \n";
-  // header("Content-type: text/txt; charset=UTF-8");
+  // echo "before query \n";
+  // // header("Content-type: text/txt; charset=UTF-8");
 
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
-  $r = mysqli_query($db, $q);
-  return $r;
+  // $r = mysqli_query($db, $q);
+  // return $r;
 }
 
 //get_orders_by_users
@@ -74,7 +74,7 @@ if(isset($_GET['all_users']))
   // header("Content-type: text/txt; charset=UTF-8");
   // include_once "./get_db_info.php";
   echo "before call";
-  // $ret = get_users();
+  $ret = get_users();
   // echo "after call";
 
   // while($user = mysqli_fetch_assoc($ret)){
