@@ -8,7 +8,7 @@
 <?php
 include('connection.php');
 include('functions.php');
-
+get_orders($db = false);
 /*
 $servername = "ancient.cs.mtsu.edu";
 $username = "hackmt7";
