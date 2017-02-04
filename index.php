@@ -8,6 +8,7 @@
 <?php
 include('./connection.php');
 echo "before include";
+
 include('./functions.php');
 get_orders($conn);
 /*
