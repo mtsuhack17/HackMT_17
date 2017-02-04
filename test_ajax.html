@@ -17,7 +17,7 @@
     function get_all_users() {
         $$a({
             type:'get',
-            url:'ajax.php',
+            url:'functions.php',
             data:{'all_users':'true'},
             response:'text',
             success:function (data) {
@@ -28,7 +28,7 @@
     function get_all_orders() {
         $$a({
             type:'get',
-            url:'ajax.php',
+            url:'functions.php',
             data:{'get_all_orders':'get_all_orders'},
             response:'text',
             success:function (data) {
@@ -39,7 +39,7 @@
     function get_orders_by_user() {
         $$a({
             type:'get',
-            url:'ajax.php',
+            url:'functions.php',
             data:{'get_orders_by_user':'get_orders_by_user'},
             response:'text',
             success:function (data) {
@@ -51,7 +51,7 @@
     function get_positions_by_user() {
         $$a({
             type:'get',
-            url:'ajax.php',
+            url:'functions.php',
             data:{'get_position_by_user':'get_position_by_user'},
             response:'text',
             success:function (data) {
