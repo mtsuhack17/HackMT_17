@@ -1,4 +1,5 @@
 <?php
+echo " in functions.php ";
 
 include_once "./conneciton.php";
 function get_position_by_user($user, $db = false){
