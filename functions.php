@@ -43,7 +43,7 @@ function get_users($db = false)
   }
   // echo "before query \n";
 
-  $q = "SELECT * FROM USERS ORDER BY NAME ASC";
+  $q = "SELECT * FROM USERS ORDER BY NAME ASC;";
   $r = mysqli_query($db, $q);
   // echo "before new connection \n";
 
