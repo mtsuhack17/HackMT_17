@@ -1,5 +1,5 @@
 <?php
-include_once "./conneciton.php";
+include_once "./connection.php";
 
 function get_position_by_user($user, $db = false){
   if(!$db)
