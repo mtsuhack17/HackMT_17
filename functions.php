@@ -62,6 +62,7 @@ if(isset($_GET['get_orders_by_user']))
   $user = $_GET['get_orders_by_user'];
   {
     $ret = get_orders_by_users($user);
+    var_dump($ret);
     while($orders = mysqli_fetch_assoc($ret))
     {
       echo "Address: ".$orders['ADDRESS'];
@@ -80,6 +81,7 @@ if(isset($_GET['get_all_orders']))
 {
   header("Content-type: text/txt; charset=UTF-8");
   $ret = get_orders();
+  var_dump($ret);
   while($orders = mysqli_fetch_assoc($ret)){
     echo "Address: ".$orders['ADDRESS'];
     echo "User: ".$orders['ASSIGNED'];
@@ -97,6 +99,7 @@ if(isset($_GET['get_position_by_user']))
   $user = $_GET['get_position_by_user'];
   {
     $ret = get_position_by_user($user);
+    var_dump($ret);
 while($position = mysqli_fetch_assoc($ret))
 {
     echo "User id: ".$position['USER_ID'];
