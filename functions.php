@@ -52,8 +52,8 @@ if(isset($_GET['all_users']))
   header("Content-type: text/txt; charset=UTF-8");
   $ret = get_users();
   while($user = mysqli_fetch_assoc($ret)){
-    echo "User id: ".$user['ID'];
-    echo "Longitude: ".$user['NAME'];
+    echo "User id: ".$user['ID'].';';
+    echo "Longitude: ".$user['NAME'].';';
   }
 }
 
@@ -65,13 +65,13 @@ if(isset($_GET['get_orders_by_user']))
     $ret = get_orders_by_users($user);
     while($orders = mysqli_fetch_assoc($ret))
     {
-      echo "Address: ".$orders['ADDRESS'];
-      echo "User: ".$orders['ASSIGNED'];
-      echo "Longitude: ".$orders['COORD_LON'];
-      echo "Latitude: ".$orders['COORD_LAT'];
-      echo "Direction: ".$orders['DIRECTION'];
-      echo "ID: ".$orders['ID'];
-      echo "Time: ".$orders['TIMES'];
+      echo "Address: ".$orders['ADDRESS'].';';
+      echo "User: ".$orders['ASSIGNED'].';';
+      echo "Longitude: ".$orders['COORD_LON'].';';
+      echo "Latitude: ".$orders['COORD_LAT'].';';
+      echo "Direction: ".$orders['DIRECTION'].';';
+      echo "ID: ".$orders['ID'].';';
+      echo "Time: ".$orders['TIMES'].';';
     }
   }
 }
@@ -82,13 +82,13 @@ if(isset($_GET['get_all_orders']))
   header("Content-type: text/txt; charset=UTF-8");
   $ret = get_orders();
   while($orders = mysqli_fetch_assoc($ret)){
-    echo "Address: ".$orders['ADDRESS'];
-    echo "User: ".$orders['ASSIGNED'];
-    echo "Longitude: ".$orders['COORD_LON'];
-    echo "Latitude: ".$orders['COORD_LAT'];
-    echo "Direction: ".$orders['DIRECTION'];
-    echo "ID: ".$orders['ID'];
-    echo "Time: ".$orders['TIMES'];
+    echo "Address: ".$orders['ADDRESS'].';';
+    echo "User: ".$orders['ASSIGNED'].';';
+    echo "Longitude: ".$orders['COORD_LON'].';';
+    echo "Latitude: ".$orders['COORD_LAT'].';';
+    echo "Direction: ".$orders['DIRECTION'].';';
+    echo "ID: ".$orders['ID'].';';
+    echo "Time: ".$orders['TIMES'].';';
   }
 }
 
@@ -100,10 +100,10 @@ if(isset($_GET['get_position_by_user']))
     $ret = get_position_by_user($user);
     while($position = mysqli_fetch_assoc($ret))
     {
-      echo "User id: ".$position['USER_ID'];
-      echo "Longitude: ".$position['COORD_LON'];
-      echo "Latitude: ".$position['COORD_LAT'];
-      echo "Time: ".$position['TIMES'];
+      echo "User id: ".$position['USER_ID'].';';
+      echo "Longitude: ".$position['COORD_LON'].';';
+      echo "Latitude: ".$position['COORD_LAT'].';';
+      echo "Time: ".$position['TIMES'].';';
     }
 }
 }
