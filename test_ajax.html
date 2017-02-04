@@ -41,7 +41,7 @@
         $$a({
             type:'get',
             url:'functions.php',
-            data:{'get_orders_by_user':'get_orders_by_user'},
+            data:{'get_orders_by_user':'1'},
             response:'text',
             success:function (data) {
                 $$('result',$$('result').innerHTML + '<br />'+data);
