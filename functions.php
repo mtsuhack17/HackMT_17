@@ -41,11 +41,13 @@ function get_users($db = false)
   if(!$db)
   {
       include_once "./conneciton.php";
-      $db = get_db_connection();
+      $db = get_db_connection($db);
   }
+  header("Content-type: text/txt; charset=UTF-8");
+  echo "before query \n";
+  
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
   $r = mysqli_query($db, $q);
-
   return $r;
 }
 
@@ -70,7 +72,7 @@ function get_orders_by_users($user, $db = false){
 
 if(isset($_GET['all_users']))
 {
-  header("Content-type: text/txt; charset=UTF-8");
+  // header("Content-type: text/txt; charset=UTF-8");
   // include_once "./get_db_info.php";
   echo "before call";
   $ret = get_users();
