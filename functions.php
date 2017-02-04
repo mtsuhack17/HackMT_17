@@ -17,6 +17,7 @@ function get_position_by_user($user, $db = false){
 }
 //get_orders
 function get_orders($db = false){
+  echo "in function call";
   if(!$db)
   {
       $db = get_db_connection();
@@ -66,7 +67,7 @@ function get_orders_by_users($user, $db = false){
   }
 }
 
-if(isset($_GET['all_users'])) 
+if(isset($_GET['all_users']))
 {
   header("Content-type: text/txt; charset=UTF-8");
   // include_once "./get_db_info.php";

@@ -8,7 +8,9 @@
 <?php
 include('connection.php');
 include('functions.php');
+echo "before function call";
 get_orders($conn);
+echo "after function call";
 /*
 $servername = "ancient.cs.mtsu.edu";
 $username = "hackmt7";
