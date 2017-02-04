@@ -18,6 +18,7 @@ function get_position_by_user($user, $db = false){
 function get_orders($db = false){
   if(!$db)
   {
+      
       $db = get_db_connection();
   }
   $q = "SELECT * FROM ORDERS";
@@ -39,7 +40,7 @@ function get_users($db = false)
   if(!$db)
   {
       include_once "./conneciton.php";
-      // $db = get_db_connection($db);
+      $db = get_db_connection($db);
   }
   // echo "before query \n";
 
