@@ -6,6 +6,10 @@
 <body>
 
 <?php
+include('connection.php');
+include('functions.php');
+
+/*
 $servername = "ancient.cs.mtsu.edu";
 $username = "hackmt7";
 $password = "hackmt7mysql";
@@ -29,7 +33,7 @@ echo "Longitude: ".$position['COORD_LON'];
 echo "Latitude: ".$position['COORD_LAT'];
 echo "Time: ".$position['TIMES'];
 
-
+*/
 
 
 ?>
