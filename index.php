@@ -22,7 +22,7 @@ if (!$conn) {
 echo "Connected successfully";
 
 $q = "SELECT * FROM POSITION";
-$r = mysqli_query($dbc, $q);
+$r = mysqli_query($conn, $q);
 $position = mysqli_fetch_assoc($r);
 echo "User id: "$position['USER_ID'];
 echo "Longitude: "$position['COORD_LON'];
