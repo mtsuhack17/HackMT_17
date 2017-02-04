@@ -38,9 +38,9 @@ function get_orders($db = false){
 //users
 function get_users($db = false)
 {
+      echo 'before connection';
   if(!$db)
   {   
-      echo 'before connection';
       $db = get_db_connection();
   }
   // echo "before query \n";
