@@ -36,14 +36,15 @@ function get_orders($db = false){
 //users
 function get_users($db = false)
 {
+  echo "before new connection \n";
   if(!$db)
   {
       include_once "./conneciton.php";
       $db = get_db_connection($db);
   }
-  header("Content-type: text/txt; charset=UTF-8");
   echo "before query \n";
-  
+  // header("Content-type: text/txt; charset=UTF-8");
+
   $q = "SELECT * FROM USERS ORDER BY NAME ASC";
   $r = mysqli_query($db, $q);
   return $r;
