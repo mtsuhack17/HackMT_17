@@ -69,9 +69,7 @@ function get_positions($db = false) {
     if(!$db){
         echo $db->lastErrorMsg();
     }
-    $sql =<<<EOF
-      SELECT * from POSITION;
-EOF;
+    $sql ="SELECT * from POSITION;";
 
     $ret = $db->query($sql);
     while($row = $ret->fetchArray(SQLITE3_ASSOC) )
@@ -95,12 +93,13 @@ function get_positions_by_user($user = false, $db = false) {
     $sql = ' SELECT * from POSITION WHERE USER_ID='.'1'.';';
 
     $ret = $db->query($sql);
-    while($row = $ret->fetchArray(SQLITE3_ASSOC) )
-    {
-        echo  $row['COORD_LON'] ."\n";
-        echo  $row['COORD_LAT'] ."\n";
-        echo  $row['TIMES'] ."\n";
-    }
+//    while($row = $ret->fetchArray(SQLITE3_ASSOC) )
+//    {
+//        echo  $row['COORD_LON'] ."\n";
+//        echo  $row['COORD_LAT'] ."\n";
+//        echo  $row['TIMES'] ."\n";
+//    }
+    return $ret;
 }
 
 
@@ -113,5 +112,5 @@ function close_connection($db)
 }
 //get_positions();
 //get_users();
-get_positions_by_user();
+//get_positions_by_user();
 ?>
