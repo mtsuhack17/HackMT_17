@@ -113,10 +113,11 @@ function print_parsed_arr($big_arr)
 // }
 
 function get_positions_by_user() {
+    defi = {'get_position_by_user':'1'};
     $$a({
         type:'get',
         url:'functions.php',
-        data:{'get_position_by_user':'1'},
+        data:defi,
         response:'text',
         success:function (data) {
             big_arr = parse_data(data); 
