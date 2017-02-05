@@ -26,7 +26,10 @@
                 // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
-        $str_arr = $b.split(" ");
+        $str_arr = $b.split(";");
+        $str_arr.forEach(function(item, i, arr) {
+            alert( i + ": " + item );
+        });
         $$('result').innerHTML += '<br />' + $str_arr;
     }
     function get_all_orders() {
