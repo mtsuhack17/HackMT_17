@@ -75,13 +75,7 @@ if(isset($_GET['get_all_orders']))
   header("Content-type: text/txt; charset=UTF-8");
   $ret = get_orders();
   while($orders = mysqli_fetch_assoc($ret)){
-    echo "Address: ".$orders['ADDRESS'].';';
-    echo "User: ".$orders['ASSIGNED'].';';
-    echo "Longitude: ".$orders['COORD_LON'].';';
-    echo "Latitude: ".$orders['COORD_LAT'].';';
-    echo "Direction: ".$orders['DIRECTION'].';';
-    echo "ID: ".$orders['ID'].';';
-    echo "Time: ".$orders['TIMES'].';';
+    echo $orders['ADDRESS'].':'.$orders['ASSIGNED'].':'.$orders['COORD_LON'].':'.$orders['COORD_LAT'].':'.$orders['DIRECTION'].':'.$orders['ID'].':'.$orders['TIMES'].'!';
   }
 }
 
