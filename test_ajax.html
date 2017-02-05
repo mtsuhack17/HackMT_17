@@ -26,11 +26,10 @@
                 // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
-        $b.forEach(function(item, i, arr) {
-            alert( i + ": " + item );
-        });
+
+        $b.forEach(    function(item, i) { alert( i + ": " + item ); }     );
         // $str_arr = $b.split(";");
-        // $str_arr.forEach(function(item, i, arr) {
+        // $str_arr.forEach(function(item, i) {
         //     alert( i + ": " + item );
         // });
         $$('result').innerHTML += '<br />' + $str_arr;
