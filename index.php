@@ -2,6 +2,7 @@
 <head>
     <title>HackMT 2017 Group 7</title>
 <!--    <script src="read_db.js"></script>-->
+<?php include('./bootstrap_cdn.php'); ?>
 </head>
 <body>
 
