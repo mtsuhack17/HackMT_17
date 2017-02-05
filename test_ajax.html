@@ -34,44 +34,52 @@ function parse_data($data)
     return big_arr;
 }
 
-
-    function get_all_users() {
-        $$a({
-            type:'get',
-            url:'functions.php',
-            data:{'all_users':'true'},
-            response:'text',
-            success:function (data) { big_arr = parse_data(data); 
-            
-            var arrayLength = big_arr.length;
-            str = '<table>';
-            for (var i = 0; i < arrayLength; i++) {
-                str+='<tr>';
-                subArrayLength = big_arr[i].length;
-                for (var j = 0; j < subArrayLength; j++) {
-                    str+='<td>';
-                    str+=big_arr[i][j];
-                    str+='</td>';
-                }
-                str+='</tr>';
-            }
-            str+='</table>';
-            $$('result').innerHTML += '<br />' + str;
-            }
-        });
-
+function print_parsed_arr($big_arr)
+{
+    var arrayLength = big_arr.length;
+    str = '<table>';
+    for (var i = 0; i < arrayLength; i++) {
+        str+='<tr>';
+        subArrayLength = big_arr[i].length;
+        for (var j = 0; j < subArrayLength; j++) {
+            str+='<td>';
+            str+=big_arr[i][j];
+            str+='</td>';
+        }
+        str+='</tr>';
     }
-    function get_all_orders() {
-        $$a({
-            type:'get',
-            url:'functions.php',
-            data:{'get_all_orders':'get_all_orders'},
-            response:'text',
-            success:function (data) {
-                $$('result',$$('result').innerHTML + '<br />'+data);
-            }
-        });
-    }
+    str+='</table>';
+    $$('result').innerHTML += '<br />' + str;
+}
+
+
+function get_all_users() 
+{
+    $$a({
+        type:'get',
+        url:'functions.php',
+        data:{'all_users':'true'},
+        response:'text',
+        success:function (data) 
+        { 
+            big_arr = parse_data(data); 
+            print_parsed_arr(big_arr);
+        }
+    });
+}
+
+function get_all_orders() {
+    $$a({
+        type:'get',
+        url:'functions.php',
+        data:{'get_all_orders':'get_all_orders'},
+        response:'text',
+        success:function (data) {
+            $$('result',$$('result').innerHTML + '<br />'+data);
+        }
+    });
+}
+    
     function get_orders_by_user() {
         $$a({
             type:'get',
