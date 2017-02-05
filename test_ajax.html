@@ -131,8 +131,8 @@ function get_positions_by_user() {
 
 function get_with_AJAX($param, $val=false)
 {
-    defi = {$param:$val};
-    // if($val)
+    defi = {};
+    defi[$param] = $val;
     // {
         $$a({
         type:'get',
