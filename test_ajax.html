@@ -42,22 +42,21 @@ function parse_data($data)
             data:{'all_users':'true'},
             response:'text',
             success:function (data) { big_arr = parse_data(data); }
-            });
-
-                var arrayLength = big_arr.length;
-                str = '<table>';
-                for (var i = 0; i < arrayLength; i++) {
-                    str+='<tr>';
-                    subArrayLength = big_arr[i].length;
-                    for (var j = 0; j < subArrayLength; j++) {
-                        str+='<td>';
-                        str+=big_arr[i][j];
-                        str+='</td>';
-                    }
-                    str+='</tr>';
+            
+            var arrayLength = big_arr.length;
+            str = '<table>';
+            for (var i = 0; i < arrayLength; i++) {
+                str+='<tr>';
+                subArrayLength = big_arr[i].length;
+                for (var j = 0; j < subArrayLength; j++) {
+                    str+='<td>';
+                    str+=big_arr[i][j];
+                    str+='</td>';
                 }
-                str+='</table>';
-                $$('result').innerHTML += '<br />' + str;
+                str+='</tr>';
+            }
+            str+='</table>';
+            $$('result').innerHTML += '<br />' + str;
             }
         });
 
