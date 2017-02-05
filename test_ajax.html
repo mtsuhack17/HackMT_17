@@ -27,12 +27,10 @@
             }
         });
 
-        $c= $b.split();
-        $c.forEach(    function(item, i) { alert( i + ": " + item ); }     );
-        // $str_arr = $b.split(";");
-        // $str_arr.forEach(function(item, i) {
-        //     alert( i + ": " + item );
-        // });
+        $str_arr = $b.split(";");
+        $str_arr.forEach(function(item) {
+            alert( item );
+        });
         $$('result').innerHTML += '<br />' + $str_arr;
     }
     function get_all_orders() {
