@@ -26,7 +26,7 @@
 <div onclick="get_orders_by_user();">Get orders by users</div><br />
 <div onclick="get_positions_by_user();">Get position by users</div><br />
  -->
-get_with_AJAX($param, $val=false)
+<!-- get_with_AJAX($param, $val=false) -->
 
 
 <script type="text/javascript" src="./scriptjava.js"></script>
@@ -137,7 +137,7 @@ function get_with_AJAX($param, $val=false)
         success:function (data) {
             big_arr = parse_data(data); 
             print_parsed_arr(big_arr);
-        }})
+        }});
     }
     else
     {
@@ -149,7 +149,7 @@ function get_with_AJAX($param, $val=false)
         success:function (data) {
             big_arr = parse_data(data); 
             print_parsed_arr(big_arr);
-        }})
+        }});
     }
 }
 </script>
