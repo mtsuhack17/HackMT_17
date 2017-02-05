@@ -20,12 +20,12 @@
 <div onclick="get_with_AJAX('all_users');">Get all users</div><br />
 <div onclick="get_with_AJAX('get_all_orders');">Get all orders</div><br />
 <div onclick="get_with_AJAX('get_orders_by_user','1');">Get orders by users</div><br />
-<div onclick="get_with_AJAX('get_position_by_user','1');">Get position by users</div><br />
+<!-- <div onclick="get_with_AJAX('get_position_by_user','1');">Get position by users</div><br /> -->
 <!-- <div onclick="get_all_users();">Get all users</div><br />
 <div onclick="get_all_orders();">Get all orders</div><br />
-<div onclick="get_orders_by_user();">Get orders by users</div><br />
+<div onclick="get_orders_by_user();">Get orders by users</div><br /> -->
 <div onclick="get_positions_by_user();">Get position by users</div><br />
- -->
+
 <!-- get_with_AJAX($param, $val=false) -->
 
 
@@ -112,18 +112,18 @@ function print_parsed_arr($big_arr)
 //     });
 // }
 
-// function get_positions_by_user() {
-//     $$a({
-//         type:'get',
-//         url:'functions.php',
-//         data:{'get_position_by_user':'1'},
-//         response:'text',
-//         success:function (data) {
-//             big_arr = parse_data(data); 
-//             print_parsed_arr(big_arr);
-//         }
-//     });
-// }
+function get_positions_by_user() {
+    $$a({
+        type:'get',
+        url:'functions.php',
+        data:{'get_position_by_user':'1'},
+        response:'text',
+        success:function (data) {
+            big_arr = parse_data(data); 
+            print_parsed_arr(big_arr);
+        }
+    });
+}
 
 function get_with_AJAX($param, $val=false)
 {
