@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+    </style>
 </head>
 <body>
 <div id="result">Server's response</div><br /><br />
@@ -80,7 +91,7 @@ function get_all_orders() {
         }
     });
 }
-    
+
     function get_orders_by_user() {
         $$a({
             type:'get',
