@@ -20,7 +20,8 @@
   </head>
   <body>
     <div id="map"></div>
-    <button id="click">Click</button>
+    <select id="worker">
+    </select>
     <script type="text/javascript" src="./scriptjava.js"></script>
     <script>
 /*
@@ -32,25 +33,24 @@
         });
       }
 */
-
-var all_users = get_with_AJAX('all_users');
-
-if(all_users == null || all_users == false){
-    alert("BOO!");
-}else{
-    alert("YAY!");
-}
+get_with_AJAX('all_users');
+var a_data;
+var fin = false;
+// while(!fin){
+//     //spin
+//     console.log("here");
+// }
+fin = false;
 var map;
 var directionsService;
 var directionsDisplay; 
+var workers = [];// = [['a', 34, -86]];
 var markers = []; // Create a marker array to hold your markers
-var workers = [
-    ['Place1', 35, -86],
-    ['Coogee Beach', 35.07, -85.2],
-    ['Cronulla Beach', 34.28, -86.7],
-    ['Manly Beach', 34.57, -86],
-    ['Maroubra Beach', 35.2, -85.9]
-];
+// for(var i = 0; i < a_data.length; i++){
+//     workers[i] = a_data[i]
+//     document.getElementById("worker").append("<option value=\""+a_data[i][0]+"\">"+a_data[i][1]+"</option>");
+// }
+
 
 function setMarkers(locations) {
 
@@ -92,10 +92,15 @@ function reloadMarkers() {
 }
 
 function initMap() {
-
+    var c;
+    if(workers.length > 0){
+        c = new google.maps.LatLng(workers[0][1], workers[0][2]);
+    }else{
+        c = new google.maps.LatLng(34, -85);
+    }
     var mapOptions = {
         zoom: 5,
-        center: new google.maps.LatLng(workers[1][1], workers[1][2]),
+            center: c
     }
 
     directionsService = new google.maps.DirectionsService;
@@ -106,14 +111,16 @@ function initMap() {
     setMarkers(workers);
 
     // Bind event listener on button to reload markers
-    document.getElementById('click').addEventListener('click', reloadMarkers);
+    // document.getElementById('click').addEventListener('click', reloadMarkers);
 
     directionsDisplay.setMap(map);
 
     var myInterval = setInterval(function(){
         //Get data
         reloadMarkers();
-        calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[0][1], workers[0][2]), "MTSU");
+        if(workers.length > 0){
+            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[0][1], workers[0][2]), "MTSU");
+        }
     }, 10000);
 
 }  
@@ -129,7 +136,7 @@ function initMap() {
             directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
-          }
+          } 
         });
       }
 
@@ -164,13 +171,19 @@ function get_with_AJAX($param, $val=false)
     data:defi,
     response:'text',
     success:function (data) {
-        big_arr = parse_data(data); 
-        alert( big_arr);
-    },
-    failure:function (error){
-        alert(error);
-    }});
+            alert("HI");
+
+        big_arr = parse_data(data);
+        a_data = big_arr;
+        fin = true;
+        }
+    });
 }
+
+
+// $('workers').change(function(){
+//     get_with_AJAX('get_position_by_user', $(this).val());
+// });
 
   </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdduQANatIcbj63jznLYUnbvsZfhpyhRY&callback=initMap"
