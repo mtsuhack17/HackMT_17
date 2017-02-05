@@ -29,7 +29,8 @@
 
         $str_arr = $b.split("!");
         $str_arr.forEach(function(item) {
-            alert( item );
+            if(item)
+                { alert( item ); }
         });
         $$('result').innerHTML += '<br />' + $str_arr;
     }
