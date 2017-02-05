@@ -17,10 +17,17 @@
 </head>
 <body>
 <div id="result">Server's response</div><br /><br />
-<div onclick="get_all_users();">Get all users</div><br />
+<div onclick="get_with_AJAX('all_users');">Get all users</div><br />
+<div onclick="get_with_AJAX('get_all_orders');">Get all orders</div><br />
+<div onclick="get_with_AJAX('get_orders_by_user','1');">Get orders by users</div><br />
+<div onclick="get_with_AJAX('get_position_by_user','1');">Get position by users</div><br />
+<!-- <div onclick="get_all_users();">Get all users</div><br />
 <div onclick="get_all_orders();">Get all orders</div><br />
 <div onclick="get_orders_by_user();">Get orders by users</div><br />
 <div onclick="get_positions_by_user();">Get position by users</div><br />
+ -->
+get_with_AJAX($param, $val=false)
+
 
 <script type="text/javascript" src="./scriptjava.js"></script>
 
@@ -64,58 +71,86 @@ function print_parsed_arr($big_arr)
 }
 
 
-function get_all_users() 
+// function get_all_users() 
+// {
+//     $$a({
+//         type:'get',
+//         url:'functions.php',
+//         data:{'all_users':'true'},
+//         response:'text',
+//         success:function (data) 
+//         { 
+//             big_arr = parse_data(data); 
+//             print_parsed_arr(big_arr);
+//         }
+//     });
+// }
+
+// function get_all_orders() {
+//     $$a({
+//         type:'get',
+//         url:'functions.php',
+//         data:{'get_all_orders':'get_all_orders'},
+//         response:'text',
+//         success:function (data) {
+//             big_arr = parse_data(data); 
+//             print_parsed_arr(big_arr);
+//         }
+//     });
+// }
+
+// function get_orders_by_user() {
+//     $$a({
+//         type:'get',
+//         url:'functions.php',
+//         data:{'get_orders_by_user':'1'},
+//         response:'text',
+//         success:function (data) {
+//             big_arr = parse_data(data); 
+//             print_parsed_arr(big_arr);
+//         }
+//     });
+// }
+
+// function get_positions_by_user() {
+//     $$a({
+//         type:'get',
+//         url:'functions.php',
+//         data:{'get_position_by_user':'1'},
+//         response:'text',
+//         success:function (data) {
+//             big_arr = parse_data(data); 
+//             print_parsed_arr(big_arr);
+//         }
+//     });
+// }
+
+function get_with_AJAX($param, $val=false)
 {
-    $$a({
+    if($val)
+    {
+        $$a({
         type:'get',
         url:'functions.php',
-        data:{'all_users':'true'},
-        response:'text',
-        success:function (data) 
-        { 
-            big_arr = parse_data(data); 
-            print_parsed_arr(big_arr);
-        }
-    });
-}
-
-function get_all_orders() {
-    $$a({
-        type:'get',
-        url:'functions.php',
-        data:{'get_all_orders':'get_all_orders'},
+        data:{$param:$val},
         response:'text',
         success:function (data) {
             big_arr = parse_data(data); 
             print_parsed_arr(big_arr);
-        }
-    });
-}
-
-function get_orders_by_user() {
-    $$a({
+        }})
+    }
+    else
+    {
+        $$a({
         type:'get',
         url:'functions.php',
-        data:{'get_orders_by_user':'1'},
+        data:{$param:$param},
         response:'text',
         success:function (data) {
             big_arr = parse_data(data); 
             print_parsed_arr(big_arr);
-        }
-    });
-}
-
-function get_positions_by_user() {
-    $$a({
-        type:'get',
-        url:'functions.php',
-        data:{'get_position_by_user':'1'},
-        response:'text',
-        success:function (data) {
-            big_arr = parse_data(data); 
-            print_parsed_arr(big_arr);
-        }
-    });
+        }})
+    }
 }
 </script>
 </body>
