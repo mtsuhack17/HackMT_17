@@ -127,30 +127,31 @@ function print_parsed_arr($big_arr)
 
 function get_with_AJAX($param, $val=false)
 {
-    if($val)
-    {
+    defi = {$param:$val};
+    // if($val)
+    // {
         $$a({
         type:'get',
         url:'functions.php',
-        data:{$param:$val},
+        data:defi,
         response:'text',
         success:function (data) {
             big_arr = parse_data(data); 
             print_parsed_arr(big_arr);
         }});
-    }
-    else
-    {
-        $$a({
-        type:'get',
-        url:'functions.php',
-        data:{$param:$param},
-        response:'text',
-        success:function (data) {
-            big_arr = parse_data(data); 
-            print_parsed_arr(big_arr);
-        }});
-    }
+    // }
+    // else
+    // {
+    //     $$a({
+    //     type:'get',
+    //     url:'functions.php',
+    //     data:{$param:$param},
+    //     response:'text',
+    //     success:function (data) {
+    //         big_arr = parse_data(data); 
+    //         print_parsed_arr(big_arr);
+    //     }});
+    // }
 }
 </script>
 </body>
