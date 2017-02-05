@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <button id="click">Click</button>
+    <script>
+/*
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+*/
+
+var map;
+var directionsService;
+var directionsDisplay; 
+var markers = []; // Create a marker array to hold your markers
+var workers = [
+    ['Place1', 35, -86],
+    ['Coogee Beach', 35.07, -85.2],
+    ['Cronulla Beach', 34.28, -86.7],
+    ['Manly Beach', 34.57, -86],
+    ['Maroubra Beach', 35.2, -85.9]
+];
+
+function setMarkers(locations) {
+
+    for (var i = 0; i < locations.length; i++) {
+        var loc = locations[i];
+        var myLatLng = new google.maps.LatLng(loc[1], loc[2]);
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            //animation: google.maps.Animation.DROP,
+            title: loc[0],
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 8.5,
+                fillColor: "blue",
+                fillOpacity: 0.4,
+                strokeWeight: 0.4
+            }
+        });
+
+        // Push marker to markers array
+        markers.push(marker);
+    }
+}
+
+function reloadMarkers() {
+
+    // Loop through markers and set map to null for each
+    for (var i=0; i<markers.length; i++) {
+
+        markers[i].setMap(null);
+    }
+
+    // Reset the markers array
+    markers = [];
+
+    // Call set markers to re-add markers
+    setMarkers(workers);
+}
+
+function initMap() {
+
+    var mapOptions = {
+        zoom: 5,
+        center: new google.maps.LatLng(workers[1][1], workers[1][2]),
+    }
+
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    setMarkers(workers);
+
+    // Bind event listener on button to reload markers
+    document.getElementById('click').addEventListener('click', reloadMarkers);
+
+    directionsDisplay.setMap(map);
+
+    var myInterval = setInterval(function(){
+        //Get data
+        reloadMarkers();
+        for(var i = 0; i < workers.length; i++){
+            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[i][1], workers[i][2]), "MTSU");
+        }
+    }, 5000);
+
+}  
+
+
+ function calculateAndDisplayRoute(directionsService, directionsDisplay, o, d) {
+        directionsService.route({
+          origin: o,
+          destination: d,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+
+  </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdduQANatIcbj63jznLYUnbvsZfhpyhRY&callback=initMap"
+    async defer></script>
+  </body>
+</html>
