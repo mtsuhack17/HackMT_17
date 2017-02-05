@@ -19,9 +19,10 @@
     </style>
   </head>
   <body>
-    <div id="map"></div>
     <select id="worker">
     </select>
+        <div id="map"></div>
+
     <script type="text/javascript" src="./scriptjava.js"></script>
     <script>
 /*
@@ -33,23 +34,18 @@
         });
       }
 */
-get_with_AJAX('all_users');
 var a_data;
-var fin = false;
-// while(!fin){
-//     //spin
-//     console.log("here");
-// }
-fin = false;
+
 var map;
 var directionsService;
 var directionsDisplay; 
-var workers = [];// = [['a', 34, -86]];
+var workers_id_name = [];// = [['a', 34, -86]];
 var markers = []; // Create a marker array to hold your markers
-// for(var i = 0; i < a_data.length; i++){
-//     workers[i] = a_data[i]
-//     document.getElementById("worker").append("<option value=\""+a_data[i][0]+"\">"+a_data[i][1]+"</option>");
-// }
+var curr_worker = [];
+var marker_info;
+var c;
+
+
 
 
 function setMarkers(locations) {
@@ -92,36 +88,45 @@ function reloadMarkers() {
 }
 
 function initMap() {
-    var c;
-    if(workers.length > 0){
-        c = new google.maps.LatLng(workers[0][1], workers[0][2]);
-    }else{
-        c = new google.maps.LatLng(34, -85);
-    }
+    get_with_AJAX('all_users');
+    console.log(a_data);
+
+    for(var i = 0; i < a_data.length; i++){
+    workers_id_name[i] = a_data[i];
+    document.getElementById("worker").innerHTML += "<option value=\"" + a_data[i][0] +"\">" +a_data[i][1] + "</option>";
+}
+
+    curr_worker = document.getElementById('worker').value;
+
+    get_with_AJAX('get_position_by_user', curr_worker);
+console.log(a_data);
+    c = new google.maps.LatLng(a_data[0][1], a_data[0][2]);
+    
     var mapOptions = {
         zoom: 5,
             center: c
-    }
+    };
+
+    marker_info = [[curr_worker, a_data[0][1], a_data[0][2]]]
 
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    setMarkers(workers);
+    setMarkers(marker_info);
 
     // Bind event listener on button to reload markers
     // document.getElementById('click').addEventListener('click', reloadMarkers);
 
-    directionsDisplay.setMap(map);
+    // directionsDisplay.setMap(map);
 
     var myInterval = setInterval(function(){
         //Get data
-        reloadMarkers();
-        if(workers.length > 0){
-            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[0][1], workers[0][2]), "MTSU");
-        }
+        //reloadMarkers();
+        calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), "MTSU");
     }, 10000);
+
 
 }  
 
@@ -167,15 +172,13 @@ function get_with_AJAX($param, $val=false)
     defi[$param] = $val;
     $$a({
     type:'get',
+    async: false,
     url:'functions.php',
     data:defi,
     response:'text',
     success:function (data) {
-            alert("HI");
-
         big_arr = parse_data(data);
         a_data = big_arr;
-        fin = true;
         }
     });
 }
