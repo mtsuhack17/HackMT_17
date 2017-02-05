@@ -21,6 +21,7 @@
   <body>
     <div id="map"></div>
     <button id="click">Click</button>
+    <script type="text/javascript" src="./scriptjava.js"></script>
     <script>
 /*
       var map;
@@ -32,6 +33,13 @@
       }
 */
 
+var all_users = get_with_AJAX('all_users');
+
+if(all_users == null || all_users == false){
+    alert("BOO!");
+}else{
+    alert("YAY!");
+}
 var map;
 var directionsService;
 var directionsDisplay; 
@@ -105,10 +113,8 @@ function initMap() {
     var myInterval = setInterval(function(){
         //Get data
         reloadMarkers();
-        for(var i = 0; i < workers.length; i++){
-            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[i][1], workers[i][2]), "MTSU");
-        }
-    }, 5000);
+        calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(workers[0][1], workers[0][2]), "MTSU");
+    }, 10000);
 
 }  
 
@@ -126,6 +132,45 @@ function initMap() {
           }
         });
       }
+
+function parse_data($data)
+{
+    $str_arr = $data.split("!");
+    big_arr = [];
+    $str_arr.forEach(function(item) {
+        if(item)
+        {   
+            $rr = item.split(':');
+            var tmp_arr= [];
+            $rr.forEach(function(chpok) 
+            {
+                if(chpok)
+                    { tmp_arr.push(chpok); }
+            })  
+            big_arr.push(tmp_arr);
+        }
+    })
+    return big_arr;
+}
+
+
+function get_with_AJAX($param, $val=false)
+{
+    defi = {};
+    defi[$param] = $val;
+    $$a({
+    type:'get',
+    url:'functions.php',
+    data:defi,
+    response:'text',
+    success:function (data) {
+        big_arr = parse_data(data); 
+        alert( big_arr);
+    },
+    failure:function (error){
+        alert(error);
+    }});
+}
 
   </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdduQANatIcbj63jznLYUnbvsZfhpyhRY&callback=initMap"
