@@ -15,16 +15,18 @@
 
 <script type="text/javascript">
     function get_all_users() {
-        $$('result').innerHTML += '<br />  "checking data"'
         $$a({
             type:'get',
             url:'functions.php',
             data:{'all_users':'true'},
             response:'text',
             success:function (data) {
-                $$('result',$$('result').innerHTML + '<br />'+data);
+                // $b = data;
+                $$('result').innerHTML + '<br />'+data;
+                // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
+
     }
     function get_all_orders() {
         $$a({
