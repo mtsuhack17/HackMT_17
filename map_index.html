@@ -22,7 +22,7 @@
     <select id="worker">
     </select>
         <div id="map"></div>
-
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="./scriptjava.js"></script>
     <script>
 /*
@@ -44,7 +44,7 @@ var markers = []; // Create a marker array to hold your markers
 var curr_worker = [];
 var marker_info;
 var c;
-
+var dest;
 
 
 
@@ -83,8 +83,13 @@ function reloadMarkers() {
     // Reset the markers array
     markers = [];
 
+    // Get new marker info
+    console.log(curr_worker);
+    console.log(a_data);
+    marker_info = [[curr_worker, a_data[0][1], a_data[0][2]]]
+
     // Call set markers to re-add markers
-    setMarkers(workers);
+    setMarkers(marker_info);
 }
 
 function initMap() {
@@ -115,16 +120,25 @@ console.log(a_data);
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
     setMarkers(marker_info);
+    get_with_AJAX('get_orders_by_user', curr_worker);
+    console.log(a_data);
+    dest = a_data[0][0];
 
     // Bind event listener on button to reload markers
     // document.getElementById('click').addEventListener('click', reloadMarkers);
 
-    // directionsDisplay.setMap(map);
+    directionsDisplay.setMap(map);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
 
     var myInterval = setInterval(function(){
         //Get data
-        //reloadMarkers();
-        calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), "MTSU");
+        get_with_AJAX('get_position_by_user', curr_worker);
+        reloadMarkers();
+        console.log(marker_info);
+         console.log(dest);
+         if(dest != ""){
+            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
+        }
     }, 10000);
 
 
@@ -152,7 +166,7 @@ function parse_data($data)
     $str_arr.forEach(function(item) {
         if(item)
         {   
-            $rr = item.split(':');
+            $rr = item.split('#');
             var tmp_arr= [];
             $rr.forEach(function(chpok) 
             {
@@ -184,9 +198,34 @@ function get_with_AJAX($param, $val=false)
 }
 
 
-// $('workers').change(function(){
-//     get_with_AJAX('get_position_by_user', $(this).val());
-// });
+$('#worker').change(function(){
+     var temp = curr_worker;
+     var temp_a_data = a_data;
+     curr_worker = $(this).val();
+     var worker_name = $('#worker option:selected').html();
+     get_with_AJAX('get_position_by_user', curr_worker);
+     console.log(a_data);
+     if(a_data.length <= 0){
+        curr_worker = temp;
+        alert(worker_name + " has no coordinates");
+        $('#worker').value(curr_worker);
+        a_data = temp_a_data;
+     }else{
+        directionsDisplay.setMap(null);
+         reloadMarkers();
+         // map.setCenter({
+         //    lat: 30,
+         //    lng: 87
+         // });
+        get_with_AJAX('get_orders_by_user', curr_worker);
+        if(a_data.length == 0){
+            dest = "";
+        }else{
+         dest = a_data[0][0];
+         calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
+     }
+     }
+ });
 
   </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdduQANatIcbj63jznLYUnbvsZfhpyhRY&callback=initMap"
