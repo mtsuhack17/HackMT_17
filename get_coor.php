@@ -5,7 +5,7 @@ function get_coordinates($dbc){
   $latitude = $_POST['lat'];
   $user = $_POST['user'];
 
-  $q = "INSERT INTO POSITION SET USER_ID = '$user' , COORD_LON = '$longitude' , COORD_LAT = '$latitude'  ";
+  $q = "INSERT INTO POSITION SET USER_ID = $user , COORD_LON = $longitude , COORD_LAT = $latitude  ";
 
   mysqli_query($dbc, $q);
 }
