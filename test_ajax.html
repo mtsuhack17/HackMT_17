@@ -39,6 +39,22 @@
                     }
                 });
 
+                var arrayLength = big_arr.length;
+                str = '<table>';
+                for (var i = 0; i < arrayLength; i++) {
+                    str+='<tr>';
+                    subArrayLength = big_arr[i].length;
+                    for (var j = 0; j < subArrayLength; j++) {
+                        str+='<td>';
+                        str+=big_arr[i][j];
+                        str+='</td>';
+                    }
+                    alert(myStringArray[i]);
+                    str+='</tr>';
+                    //Do something
+                }
+                str+='</table>';
+                $$('result').innerHTML += '<br />' + str;
                 // $$('result').innerHTML += '<br />' + data;
                 // $$('result',$$('result').innerHTML + '<br />'+data);
             }
