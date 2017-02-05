@@ -30,7 +30,8 @@
         $str_arr = $b.split("!");
         $str_arr.forEach(function(item) {
             if(item)
-                { alert( item ); }
+                { $separated = item.split(':');
+                    alert( 'First: '.$separated[0].' Second:'.$separated[1]  ); }
         });
         $$('result').innerHTML += '<br />' + $str_arr;
     }
