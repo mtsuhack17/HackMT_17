@@ -53,7 +53,7 @@ if(isset($_GET['all_users']))
   $ret = get_users();
   while($user = mysqli_fetch_assoc($ret)){
     echo "User id: ".$user['ID'].';';
-    echo "User name: ".$user['NAME'].';';
+    echo "User name: ".$user['NAME'].'!';
   }
 }
 
