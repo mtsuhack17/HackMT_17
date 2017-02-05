@@ -84,8 +84,6 @@ function reloadMarkers() {
     markers = [];
 
     // Get new marker info
-    console.log(curr_worker);
-    console.log(a_data);
     marker_info = [[curr_worker, a_data[0][1], a_data[0][2]]]
 
     // Call set markers to re-add markers
@@ -136,9 +134,7 @@ console.log(a_data);
         reloadMarkers();
         console.log(marker_info);
          console.log(dest);
-         if(dest != ""){
-            calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
-        }
+        calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
     }, 10000);
 
 
@@ -211,19 +207,17 @@ $('#worker').change(function(){
         $('#worker').value(curr_worker);
         a_data = temp_a_data;
      }else{
-        directionsDisplay.setMap(null);
          reloadMarkers();
          // map.setCenter({
          //    lat: 30,
          //    lng: 87
          // });
         get_with_AJAX('get_orders_by_user', curr_worker);
-        if(a_data.length == 0){
-            dest = "";
-        }else{
-         dest = a_data[0][0];
+         if(a_data.length == 0)
+            dest = "MTSU";
+         else
+             dest = a_data[0][0];
          calculateAndDisplayRoute(directionsService, directionsDisplay, new google.maps.LatLng(marker_info[0][1], marker_info[0][2]), dest);
-     }
      }
  });
 
