@@ -14,6 +14,26 @@
 <script type="text/javascript" src="./scriptjava.js"></script>
 
 <script type="text/javascript">
+function parse_data($data)
+{
+    $str_arr = $data.split("!");
+    big_arr = [];
+    $str_arr.forEach(function(item) {
+        if(item)
+        {   
+            $rr = item.split(':');
+            var tmp_arr= [];
+            $rr.forEach(function(chpok) 
+            {
+                if(chpok)
+                    { tmp_arr.push(chpok); }
+            })  
+            big_arr.push(tmp_arr);
+        }
+    return big_arr;
+}
+
+
     function get_all_users() {
         $$a({
             type:'get',
@@ -21,22 +41,7 @@
             data:{'all_users':'true'},
             response:'text',
             success:function (data) {
-                $b = data;
-                $str_arr = data.split("!");
-                big_arr = [];
-                $str_arr.forEach(function(item) {
-                    if(item)
-                    {   
-                        $rr = item.split(':');
-                        var tmp_arr= [];
-                        $rr.forEach(function(chpok) 
-                        {
-                            if(chpok)
-                                { tmp_arr.push(chpok); }
-                        })  
-                        big_arr.push(tmp_arr);
-                        // alert( $rr[0].'  '.$rr[0]  ); 
-                    }
+                big_arr = parse_data(data);
                 });
 
                 var arrayLength = big_arr.length;
@@ -49,24 +54,13 @@
                         str+=big_arr[i][j];
                         str+='</td>';
                     }
-                    // alert(myStringArray[i]);
                     str+='</tr>';
-                    //Do something
                 }
                 str+='</table>';
                 $$('result').innerHTML += '<br />' + str;
-                // $$('result').innerHTML += '<br />' + data;
-                // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
 
-        // $str_arr = $b.split("!");
-        // $str_arr.forEach(function(item) {
-        //     if(item)
-        //         { $rr = item;
-        //             alert( $rr  ); }
-        // });
-        // $$('result').innerHTML += '<br />' + $str_arr;
     }
     function get_all_orders() {
         $$a({
