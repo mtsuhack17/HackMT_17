@@ -3,7 +3,7 @@ include_once "./connection.php";
 
 function get_position_by_user($user, $db = false){
   if(!$db)  { $db = get_db_connection();  }
-  $q = "SELECT * FROM POSITION WHERE USER_ID = '$user'";
+  $q = "SELECT * FROM POSITION WHERE USER_ID = '$user' ORDER BY TIMES ASC";
   return mysqli_query($db, $q);
 }
 
