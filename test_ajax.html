@@ -75,7 +75,8 @@ function get_all_orders() {
         data:{'get_all_orders':'get_all_orders'},
         response:'text',
         success:function (data) {
-            $$('result',$$('result').innerHTML + '<br />'+data);
+            big_arr = parse_data(data); 
+            print_parsed_arr(big_arr);
         }
     });
 }
