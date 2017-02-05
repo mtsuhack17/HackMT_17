@@ -26,7 +26,8 @@
                 // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
-        $$('result').innerHTML += '<br />' + $b;
+        $str_arr = $b.split(" ");
+        $$('result').innerHTML += '<br />' + $str_arr;
     }
     function get_all_orders() {
         $$a({
