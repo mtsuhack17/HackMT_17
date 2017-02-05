@@ -23,10 +23,19 @@
             success:function (data) {
                 $b = data;
                 $str_arr = data.split("!");
+                big_arr = [];
                 $str_arr.forEach(function(item) {
                     if(item)
-                        { $rr = item.split(':');
-                            alert( $rr[0].'  '.$rr[0]  ); }
+                    {   
+                        $rr = item.split(':');
+                        var tmp_arr= [];
+                        $rr.forEach(function(chpok) 
+                        {
+                            if(chpok)
+                                { tmp_arr.push(chpok); }
+                        }  
+                        big_arr.push(tmp_arr);
+                        // alert( $rr[0].'  '.$rr[0]  ); }
                 });
 
                 // $$('result').innerHTML += '<br />' + data;
