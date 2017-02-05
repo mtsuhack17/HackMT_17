@@ -21,12 +21,12 @@
             data:{'all_users':'true'},
             response:'text',
             success:function (data) {
-                // $b = data;
-                $$('result').innerHTML += '<br />'+data;
+                $b = data;
+                // $$('result').innerHTML += '<br />' + data;
                 // $$('result',$$('result').innerHTML + '<br />'+data);
             }
         });
-
+        echo $b;
     }
     function get_all_orders() {
         $$a({
